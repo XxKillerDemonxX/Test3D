@@ -19,18 +19,22 @@ public class Action : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Alpha1))
         {
             playerData.currentHeldItemSlot = 0;
+            toggleItemVisibility();
         }
         else if (Input.GetKeyUp(KeyCode.Alpha2))
         {
             playerData.currentHeldItemSlot = 1;
+            toggleItemVisibility();
         }
         else if (Input.GetKeyUp(KeyCode.Alpha3))
         {
             playerData.currentHeldItemSlot = 2;
+            toggleItemVisibility();
         }
         else if (Input.GetKeyUp(KeyCode.Alpha4))
         {
             playerData.currentHeldItemSlot = 3;
+            toggleItemVisibility();
         }
 
         playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
@@ -42,8 +46,17 @@ public class Action : MonoBehaviour
                 item.interactable();
         }
 
-
-
+    }
+    void toggleItemVisibility()
+    {
+        for (int i = 0; i < 4; i++)
+        {
+            if (playerData.inventory[playerData.currentHeldItemSlot] == playerData.inventory[i])
+            {
+                playerData.inventory[playerData.currentHeldItemSlot].SetActive(true);
+            }
+            playerData.inventory[i].SetActive(false);
+        }
     }
     private void OnApplicationQuit()
     {
