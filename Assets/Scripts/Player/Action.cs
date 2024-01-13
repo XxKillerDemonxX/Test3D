@@ -34,7 +34,7 @@ public class Action : MonoBehaviour
         }
 
         playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
-        
+
         if (Input.GetKeyUp(KeyCode.Mouse0) && playerData.currentHeldItem != null)
         {
             Interactable item = playerData.currentHeldItem.GetComponent<Interactable>();
@@ -47,6 +47,6 @@ public class Action : MonoBehaviour
     }
     private void OnApplicationQuit()
     {
-        Array.Clear(playerData.inventory, 0, 3);
+        Array.Clear(playerData.inventory, 0, 4);
     }
 }

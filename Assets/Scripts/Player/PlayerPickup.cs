@@ -11,7 +11,8 @@ public class PlayerPickup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < 4; i ++)
+        playerData.Hand = Hand;
+        for (int i = 0; i < 4; i++)
         {
             playerData.inventory[i] = Hand;
         }
@@ -33,7 +34,7 @@ public class PlayerPickup : MonoBehaviour
             //Debug.Log(hit.collider.name + " was hit!");
             if (Input.GetKeyUp(KeyCode.E))
             {
-                for (int i = 0; i < playerData.inventory.Length; i ++)
+                for (int i = 0; i < playerData.inventory.Length; i++)
                 {
                     if ((playerData.inventory[i] == null || playerData.inventory[i].layer == 3) && hit.collider.gameObject.GetComponent<Interactable>() != null)
                     {
@@ -51,7 +52,7 @@ public class PlayerPickup : MonoBehaviour
         }
     }
     void drop()
-    {   
+    {
         if (Input.GetKeyUp(KeyCode.G))
         {
             Debug.Log("Dropped");

@@ -6,28 +6,37 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float walkingSpeed = 7.5f;
-    public float runningSpeed = 11.5f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
+    public PlayerSO playerData;
+    private float walkingSpeed;
+    private float runningSpeed;
+    private float jumpSpeed;
+    private float gravity;
     public Camera playerCamera;
-    public float lookSpeed = 2.0f;
-    public float lookXLimit = 45.0f;
+    private float lookSpeed;
+    private float lookXLimit;
 
     CharacterController characterController;
     Vector3 moveDirection = Vector3.zero;
     float rotationX = 0;
-
+    public float staminaTimer;
+    public float staminaRefillTimer;
+    public float staminaRefillTimerTimer;
     [HideInInspector]
     public bool canMove = true;
 
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        walkingSpeed = playerData.walkingSpeed;
+        runningSpeed = playerData.runningSpeed;
+        jumpSpeed = playerData.jumpSpeed;
+        gravity = playerData.gravity;
+        lookSpeed = playerData.lookSpeed;
+        lookXLimit = playerData.lookXLimit;
     }
 
     void Update()
@@ -36,11 +45,42 @@ public class PlayerMovement : MonoBehaviour
         Vector3 forward = transform.TransformDirection(Vector3.forward);
         Vector3 right = transform.TransformDirection(Vector3.right);
         // Press Left Shift to run
-        bool isRunning = Input.GetKey(KeyCode.LeftShift);
+        bool isRunning = Input.GetKey(KeyCode.LeftShift) && playerData.currentStamina > 0;
         float curSpeedX = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (isRunning ? runningSpeed : walkingSpeed) * Input.GetAxis("Horizontal") : 0;
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+
+        // decreases stamina when running
+        if (isRunning)
+        {
+            //Debug.Log(isRunning);
+            staminaTimer += Time.deltaTime;
+            if (staminaTimer >= 1)
+            {
+                playerData.currentStamina = playerData.currentStamina - 10;
+                staminaTimer = 0;
+            }
+            staminaRefillTimer = 0;
+        }
+
+
+        if (!isRunning)
+        {
+            staminaTimer = 0;
+            staminaRefillTimer += Time.deltaTime;
+            if (staminaRefillTimer >= 3)
+            {
+                staminaRefillTimerTimer += Time.deltaTime;
+                if (staminaRefillTimerTimer >= 1)
+                {
+                    playerData.currentStamina += 10;
+                    staminaRefillTimerTimer = 0;
+                }
+            }
+        }
+        playerData.currentStamina = Mathf.Clamp(playerData.currentStamina, 0, playerData.maxStamina);
+
 
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
         {
