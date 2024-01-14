@@ -27,6 +27,7 @@ public class HotBarImages : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        //needs to be updated, might not be possible to generate a asset preview image if gameObject is disabled;
         for (int i = 0; i < 4; i ++)
         {
             imgTexture = AssetPreview.GetAssetPreview(playerData.inventory[i]);
