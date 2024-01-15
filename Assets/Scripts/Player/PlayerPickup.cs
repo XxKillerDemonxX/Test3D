@@ -14,7 +14,7 @@ public class PlayerPickup : MonoBehaviour
         playerData.Hand = Hand;
         for (int i = 0; i < 4; i++)
         {
-            playerData.inventory[i] = Hand;
+            playerData.inventory[i] = playerData.Hand;
         }
     }
 
@@ -34,25 +34,25 @@ public class PlayerPickup : MonoBehaviour
             //Debug.Log(hit.collider.name + " was hit!");
             if (Input.GetKeyUp(KeyCode.E))
             {
-                if (playerData.inventory[playerData.currentHeldItemSlot] == Hand && hit.collider.gameObject.GetComponent<Interactable>() != null)
+                if (playerData.inventory[playerData.currentHeldItemSlot] == playerData.Hand && hit.collider.gameObject.GetComponent<Interactable>() != null)
                 {
                     playerData.inventory[playerData.currentHeldItemSlot] = hit.collider.gameObject;
-                    hit.collider.gameObject.transform.parent = Hand.transform;
+                    hit.collider.gameObject.transform.parent = playerData.Hand.transform;
                     hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    hit.collider.gameObject.transform.rotation = Hand.transform.rotation;
-                    hit.collider.gameObject.transform.position = Hand.transform.position;
+                    hit.collider.gameObject.transform.rotation = playerData.Hand.transform.rotation;
+                    hit.collider.gameObject.transform.position = playerData.Hand.transform.position;
                 }
                 else
                 {
                     for (int i = 0; i < playerData.inventory.Length; i++)
                     {
-                        if ((playerData.inventory[i] == Hand || playerData.inventory[i].layer == 3) && hit.collider.gameObject.GetComponent<Interactable>() != null)
+                        if ((playerData.inventory[i] == playerData.Hand || playerData.inventory[i].layer == 3) && hit.collider.gameObject.GetComponent<Interactable>() != null)
                         {
                             playerData.inventory[i] = hit.collider.gameObject;
-                            hit.collider.gameObject.transform.parent = Hand.transform;
+                            hit.collider.gameObject.transform.parent = playerData.Hand.transform;
                             hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                            hit.collider.gameObject.transform.rotation = Hand.transform.rotation;
-                            hit.collider.gameObject.transform.position = Hand.transform.position;
+                            hit.collider.gameObject.transform.rotation = playerData.Hand.transform.rotation;
+                            hit.collider.gameObject.transform.position = playerData.Hand.transform.position;
 
                             break;
                         }
@@ -64,13 +64,13 @@ public class PlayerPickup : MonoBehaviour
     }
     void drop()
     {
-        if (Input.GetKeyUp(KeyCode.G) && (playerData.inventory[playerData.currentHeldItemSlot] != Hand))
+        if (Input.GetKeyUp(KeyCode.G) && (playerData.inventory[playerData.currentHeldItemSlot] != playerData.Hand))
         {
             Debug.Log("Dropped");
             playerData.currentHeldItem.transform.parent = null;
             playerData.currentHeldItem.GetComponent<Rigidbody>().isKinematic = false;
-            playerData.inventory[playerData.currentHeldItemSlot] = Hand;
-            playerData.currentHeldItem = Hand;
+            playerData.inventory[playerData.currentHeldItemSlot] = playerData.Hand;
+            playerData.currentHeldItem = playerData.Hand;
         }
     }
 

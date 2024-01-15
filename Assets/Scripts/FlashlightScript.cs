@@ -7,6 +7,7 @@ using UnityEngine.Experimental.GlobalIllumination;
 
 public class FlashlightScript : Interactable
 {
+    public override float rotationX { get { return 90f; } }
     private static int maxBattery = 100;
     private int currentBattery = maxBattery;
     
