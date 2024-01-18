@@ -27,32 +27,43 @@ public class PlayerPickup : MonoBehaviour
 
     void pickUp()
     {
-        Ray ray = Camera.main.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        Ray ray = Camera.main.ViewportPointToRay(playerData.screenCenter);
         RaycastHit hit;
         if (Physics.Raycast(ray, out hit, 2))
         {
             //Debug.Log(hit.collider.name + " was hit!");
             if (Input.GetKeyUp(KeyCode.E))
             {
-                if (playerData.inventory[playerData.currentHeldItemSlot] == playerData.Hand && hit.collider.gameObject.GetComponent<Interactable>() != null)
+                GameObject GO = playerData.inventory[playerData.currentHeldItemSlot];
+                //Rigidbody rb = hit.rigidbody;
+                //GameObject temp = rb.gameObject;
+
+                if (GO == playerData.Hand && hit.collider.gameObject.transform.root.gameObject.GetComponent<Interactable>() != null)
                 {
-                    playerData.inventory[playerData.currentHeldItemSlot] = hit.collider.gameObject;
-                    hit.collider.gameObject.transform.parent = playerData.Hand.transform;
-                    hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                    hit.collider.gameObject.transform.rotation = playerData.Hand.transform.rotation;
-                    hit.collider.gameObject.transform.position = playerData.Hand.transform.position;
+                    Debug.Log("is working1");
+                    GameObject item = hit.collider.gameObject.transform.root.gameObject;
+                    playerData.inventory[playerData.currentHeldItemSlot] = item; //hit.collider.gameObject.transform.root.gameObject;
+                    //Debug.Log(hit.collider.gameObject.transform.root.gameObject.name);
+                    item.GetComponent<Interactable>().setPlayer(gameObject);
+                    item.transform.parent = playerData.Hand.transform;
+                    item.GetComponent<Rigidbody>().isKinematic = true;
+                    item.transform.rotation = playerData.Hand.transform.rotation;
+                    item.transform.position = playerData.Hand.transform.position;
                 }
                 else
                 {
                     for (int i = 0; i < playerData.inventory.Length; i++)
                     {
-                        if ((playerData.inventory[i] == playerData.Hand || playerData.inventory[i].layer == 3) && hit.collider.gameObject.GetComponent<Interactable>() != null)
+                        if ((playerData.inventory[i] == playerData.Hand && hit.collider.gameObject.transform.root.gameObject.GetComponent<Interactable>() != null))
                         {
-                            playerData.inventory[i] = hit.collider.gameObject;
-                            hit.collider.gameObject.transform.parent = playerData.Hand.transform;
-                            hit.collider.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-                            hit.collider.gameObject.transform.rotation = playerData.Hand.transform.rotation;
-                            hit.collider.gameObject.transform.position = playerData.Hand.transform.position;
+                            Debug.Log("is working2");
+                            GameObject item = hit.collider.gameObject.transform.root.gameObject;
+                            playerData.inventory[i] = item;
+                            item.GetComponent<Interactable>().setPlayer(gameObject);
+                            item.transform.parent = playerData.Hand.transform;
+                            item.GetComponent<Rigidbody>().isKinematic = true;
+                            item.transform.rotation = playerData.Hand.transform.rotation;
+                            item.transform.position = playerData.Hand.transform.position;
 
                             break;
                         }
@@ -69,6 +80,7 @@ public class PlayerPickup : MonoBehaviour
             Debug.Log("Dropped");
             playerData.currentHeldItem.transform.parent = null;
             playerData.currentHeldItem.GetComponent<Rigidbody>().isKinematic = false;
+            playerData.currentHeldItem.GetComponent<Interactable>().resetPlayer();
             playerData.inventory[playerData.currentHeldItemSlot] = playerData.Hand;
             playerData.currentHeldItem = playerData.Hand;
         }

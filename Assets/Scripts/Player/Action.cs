@@ -25,19 +25,19 @@ public class Action : MonoBehaviour
         {
             playerData.currentHeldItemSlot = 1;
             playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
-            
+
         }
         else if (Input.GetKeyUp(KeyCode.Alpha3))
         {
             playerData.currentHeldItemSlot = 2;
             playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
-            
+
         }
         else if (Input.GetKeyUp(KeyCode.Alpha4))
         {
             playerData.currentHeldItemSlot = 3;
             playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
-            
+
         }
 
         playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
@@ -50,9 +50,21 @@ public class Action : MonoBehaviour
         }
 
     }
-    
+
     private void OnApplicationQuit()
     {
         Array.Clear(playerData.inventory, 0, 4);
     }
 }
+// ⠘⢗⡘⠄⠙⡄⠸⣵⣯⣿⣿⣿⣿⣿⡿⠃⠂⢸
+// ⣶⡯⢳⣆⠄⠄⠄⠄⣍⡛⠿⢿⡿⢋⠄⠄⠄⢜⣿⡿⡟⢿
+// ⣿⠿⣸⠟⠄⠄⠠⡄⠢⣉⣁⢀⣼⣿⡿⢅⣾⣎⠈⠃⠋⢸⣿
+// ⡟⣾⣿⡲⣷⡀⠄⢟⣂⡀⢙⣰⣭⣾⣿⣿⣿⣿⣆⠄⠄⠠⣬⠛⢿
+// ⣿⣿⣿⣿⠈⣧⠠⢈⣿⣿⣿⡿⢿⣿⢰⢟⣯⣷⣿⣿⣿⣿⣷⣶⣤⡉⠻
+// ⣾⣿⣿⠟⠄⣿⣇⠄⠄⢻⣿⣷⣦⣬⡘⢿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣦⠘⣿
+// ⠉⠄⠄⠄⢰⣿⣿⡆⠄⠄⠙⢿⣿⣿⣿⣿⣎⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠃⠸
+// ⠄⠄⠄⠄⣿⣿⣿⡇⠄⠄⠄⠄⠙⢿⣿⣿⣿⣧⢹⣿⣿⣿⣿⣿⣿⡿⠃⠄⢀⣿
+// ⢀⠄⠄⠄⣿⣿⣿⡇⠄⠄⠄⠄⠄⠄⠙⢿⣿⣿⠄⣿⣿⣿⡿⠟⠋⠄⠄⢀
+// ⣰⠄⠄⠄⢿⣿⣿⣇⠄⠄⠄⠄⠄⠄⠄⠄⠉⠛⠐⠛⠝⠃⠄⠄⠄⣀
+// ⢻⠄⠄⠄⠈⢿⣿⣿⡀⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣠
+// ⣿⣄⠁⠄⠄⠄⠉⠛⠓⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⠄⣠⣾

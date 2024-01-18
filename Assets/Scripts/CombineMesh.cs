@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(MeshRenderer))]
 public class CombineMesh : MonoBehaviour
 {
-    
+
     List<MeshFilter> meshFilters = new List<MeshFilter>();
 
     void Start()
@@ -17,7 +17,7 @@ public class CombineMesh : MonoBehaviour
         //Debug.Log(meshFilters.Length);
         CombineInstance[] combine = new CombineInstance[meshFilters.Count];
 
-        for (int i = 0; i < meshFilters.Count; i ++)
+        for (int i = 0; i < meshFilters.Count; i++)
         {
             Quaternion rotationOffset = Quaternion.FromToRotation(transform.eulerAngles, meshFilters[i].transform.eulerAngles);
 
@@ -25,7 +25,7 @@ public class CombineMesh : MonoBehaviour
             meshFilters[i].transform.rotation = Quaternion.Euler(meshFilters[i].transform.eulerAngles) * Quaternion.Inverse(rotationOffset);
 
 
-            
+
             combine[i].mesh = meshFilters[i].sharedMesh;
             combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
             meshFilters[i].gameObject.SetActive(false);
@@ -34,7 +34,7 @@ public class CombineMesh : MonoBehaviour
             //we already stored the 4x4Matrix in combine[i].transform, so it's safe to change back now
             meshFilters[i].transform.position += transformOffset;
             meshFilters[i].transform.rotation *= rotationOffset;
-            
+
         }
         Mesh mesh = new Mesh();
         mesh.CombineMeshes(combine);

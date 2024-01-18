@@ -10,7 +10,7 @@ public class FlashlightScript : Interactable
     public override float rotationX { get { return 90f; } }
     private static int maxBattery = 100;
     private int currentBattery = maxBattery;
-    
+
     private bool isOn = false;
     public new Light light;
     private Light lightComponent;
@@ -30,10 +30,10 @@ public class FlashlightScript : Interactable
             if (time >= 5)
             {
                 time = 0;
-                currentBattery --;
+                currentBattery--;
             }
         }
-        
+
     }
     public override void interactable()
     {

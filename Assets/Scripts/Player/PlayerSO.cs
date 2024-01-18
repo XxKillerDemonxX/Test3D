@@ -20,7 +20,9 @@ public class PlayerSO : ScriptableObject
     public int currentHeldItemSlot = 0;
     public GameObject currentHeldItem;
 
-    public Ray ray;
+    public Ray gunRay;
+    public Vector3 screenCenter = new Vector3(0.5f, 0.5f, 0);
+    public Camera camera;
 
 
     public float walkingSpeed = 3f;
