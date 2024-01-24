@@ -34,8 +34,10 @@ public class GunScript : Interactable
             //ray.origin = fire.transform.position;
             //ray = Camera.main.ScreenPointToRay(screenCenter);
             screenCenter = new Vector3(0.5f, 0.5f, 0);
-            destination = camera.ScreenToWorldPoint(screenCenter) - fire.transform.position;
-            ray = new Ray(fire.transform.position, destination);
+            destination = camera.transform.forward - fire.transform.position;
+            //Debug.Log(destination);
+            destination.Normalize();
+            ray = new Ray(fire.transform.position, camera.transform.forward);
         }
     }
 
@@ -44,11 +46,16 @@ public class GunScript : Interactable
         //Ray ray = Camera.main.ScreenPointToRay(screenCenter);
         //RaycastHit hit;
         //ray.origin = fire.transform.position;
-        if (Physics.Raycast(ray, out hit, 25))
+        int layerMask = ~(LayerMask.GetMask("FireArm") | LayerMask.GetMask("Player"));
+        //int layerMask2 = ~LayerMask.GetMask("Player");
+        if (Physics.Raycast(ray, out hit, 100, layerMask))
         {
             Debug.Log("shot " + hit.collider.gameObject.name);
+            Debug.Log("shot " + hit.collider.gameObject.layer);
+            Vector3 hitPoint = hit.point;
+            //Debug.DrawRay(fire.transform.position, destination, Color.green);
             lineRenderer.SetPosition(0, fire.transform.position);
-            lineRenderer.SetPosition(1, screenCenter);
+            lineRenderer.SetPosition(1, hitPoint);
         }
     }
 

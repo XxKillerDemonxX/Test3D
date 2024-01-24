@@ -912,6 +912,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fire: {fileID: 4008054944126738056}
+  lineRenderer: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!120 &3386810816527063346
 LineRenderer:
   serializedVersion: 2
@@ -965,7 +967,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 1
+        value: 0.08175278
         inSlope: 0
         outSlope: 0
         tangentMode: 0
