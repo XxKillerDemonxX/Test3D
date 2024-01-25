@@ -48,7 +48,7 @@ public class Action : MonoBehaviour
             if (item != null)
                 item.interactable();
         }
-
+        //check if object held is a object that needs to be mouse held down vs click
     }
 
     private void OnApplicationQuit()
@@ -56,6 +56,39 @@ public class Action : MonoBehaviour
         Array.Clear(playerData.inventory, 0, 4);
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // ⠘⢗⡘⠄⠙⡄⠸⣵⣯⣿⣿⣿⣿⣿⡿⠃⠂⢸
 // ⣶⡯⢳⣆⠄⠄⠄⠄⣍⡛⠿⢿⡿⢋⠄⠄⠄⢜⣿⡿⡟⢿
 // ⣿⠿⣸⠟⠄⠄⠠⡄⠢⣉⣁⢀⣼⣿⡿⢅⣾⣎⠈⠃⠋⢸⣿
