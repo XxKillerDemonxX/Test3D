@@ -85,6 +85,16 @@ public class PlayerPickup : MonoBehaviour
             playerData.currentHeldItem = playerData.Hand;
         }
     }
+    public PlayerSO getPlayerData()
+    {
+        return playerData;
+    }
+    public void resetHand()
+    {
+        playerData.inventory[playerData.currentHeldItemSlot] = playerData.Hand;
+        playerData.currentHeldItem = playerData.Hand;
+        
+    }
 
 
 }

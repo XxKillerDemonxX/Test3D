@@ -13,6 +13,14 @@ public class Interactable : MonoBehaviour
     {
 
     }
+    public virtual void holdInteractable()
+    {
+
+    }
+    public virtual void endHoldInteractable()
+    {
+        
+    }
     public virtual void setPlayer(GameObject player)
     {
 

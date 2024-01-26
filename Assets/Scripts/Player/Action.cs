@@ -42,11 +42,27 @@ public class Action : MonoBehaviour
 
         playerData.currentHeldItem = playerData.inventory[playerData.currentHeldItemSlot];
 
-        if (Input.GetKeyUp(KeyCode.Mouse0) && playerData.currentHeldItem != null)
+        if (Input.GetKeyUp(KeyCode.Mouse0) && playerData.currentHeldItem != null && playerData.currentHeldItem.tag == "clickInteractable")
         {
             Interactable item = playerData.currentHeldItem.GetComponent<Interactable>();
             if (item != null)
                 item.interactable();
+        }
+        else if (Input.GetKey(KeyCode.Mouse0) && playerData.currentHeldItem != null && playerData.currentHeldItem.tag == "holdInteractable")
+        {
+            Interactable item = playerData.currentHeldItem.GetComponent<Interactable>();
+            if (item != null)
+            {
+                item.holdInteractable();
+            }
+        }
+        else if (Input.GetKeyUp(KeyCode.Mouse0) && playerData.currentHeldItem != null && playerData.currentHeldItem.tag == "holdInteractable")
+        {
+            Interactable item = playerData.currentHeldItem.GetComponent<Interactable>();
+            if (item != null)
+            {
+                item.endHoldInteractable();
+            }
         }
         //check if object held is a object that needs to be mouse held down vs click
     }
