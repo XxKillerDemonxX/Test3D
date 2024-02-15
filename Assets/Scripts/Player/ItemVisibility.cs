@@ -9,7 +9,7 @@ public class ItemVisibility : MonoBehaviour
     public PlayerSO playerData;
     void Start()
     {
-        
+        playerData.currentHeldItem = playerData.Hand;
     }
 
     // Update is called once per frame

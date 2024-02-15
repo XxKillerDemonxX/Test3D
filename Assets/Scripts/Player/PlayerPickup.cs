@@ -9,9 +9,13 @@ public class PlayerPickup : MonoBehaviour
     public PlayerSO playerData;
     public GameObject Hand;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         playerData.Hand = Hand;
+    }
+    void Start()
+    {
+        //playerData.Hand = Hand;
         for (int i = 0; i < 4; i++)
         {
             playerData.inventory[i] = playerData.Hand;
