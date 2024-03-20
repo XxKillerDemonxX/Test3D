@@ -59,3 +59,32 @@ public class GunScript : Interactable
 
 
 }
+
+
+// == Results from bdsmtest.org == 
+// 91% Vanilla 
+// 21% Submissive 
+// 6% Exhibitionist 
+// 5% Dominant 
+// 2% Rope bunny 
+// 0% Experimentalist 
+// 0% Daddy/Mommy 
+// 0% Rigger 
+// 0% Ageplayer 
+// 0% Brat 
+// 0% Brat tamer 
+// 0% Degrader 
+// 0% Degradee 
+// 0% Boy/Girl 
+// 0% Masochist 
+// 0% Master/Mistress 
+// 0% Non-monogamist 
+// 0% Owner 
+// 0% Primal (Hunter) 
+// 0% Pet 
+// 0% Primal (Prey) 
+// 0% Sadist 
+// 0% Slave 
+// 0% Switch 
+// 0% Voyeur 
+
